@@ -1,0 +1,129 @@
+
+
+{% extends 'home_index.html' %}
+{% block body %}
+
+<style>
+  body {
+    background: #f1f8f7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .profile-container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    padding: 40px;
+  }
+
+  .profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .profile-header img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid #009688;
+    object-fit: cover;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .profile-header h2 {
+    margin-top: 15px;
+    font-weight: 700;
+    color: #00695c;
+  }
+
+  .profile-header p {
+    color: #00695c;
+    font-size: 1rem;
+  }
+
+  .table {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .table th {
+    background: linear-gradient(90deg, #00695c, #009688);
+    color: #ffffff;
+    font-weight: 600;
+    text-align: left;
+    padding: 14px;
+  }
+
+  .table td {
+    padding: 14px;
+    vertical-align: middle;
+    background: #e0f2f1;
+    font-weight: 500;
+    color: #222;
+  }
+
+  .table tr:nth-child(even) td {
+    background: #b2dfdb;
+  }
+
+  .btn-edit {
+    margin-top: 25px;
+    display: block;
+    background: linear-gradient(90deg, #00695c, #009688);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: 600;
+    color: #ffffff;
+    transition: 0.3s;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .btn-edit:hover {
+    background: linear-gradient(90deg, #009688, #00695c);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    color: #ffffff;
+  }
+</style>
+
+<div class="container">
+  <div class="profile-container">
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+      {# <img src="{{ data.photo }}" alt="Profile Photo"> #}
+      <h2>{{ data.name }}</h2>
+      <p>My Profile</p>
+    </div>
+
+    <!-- Profile Info Table -->
+    <table class="table table-bordered">
+      <tr>
+        <th>Name</th>
+        <td>{{ data.name }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ data.mail }}</td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td>{{ data.phone }}</td>
+      </tr>
+    </table>
+
+    <!-- Optional Edit Button -->
+    {# <a href="{% url 'edit_profile' %}" class="btn-edit">Edit Profile</a> #}
+
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
+{% endblock %}

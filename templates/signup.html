@@ -1,0 +1,164 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Sign up</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{##}
+{#</head>#}
+{#<body>#}
+{#  <div class="container">#}
+{#    <h2 class="mb-4">Sign up</h2>#}
+{#    <form action="/myapp/signup_post/" method="post">#}
+{#        {% csrf_token %}#}
+{#      <div class="row mb-3">#}
+{#        <label for="name" class="col-sm-4 ">Full Name</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" name="fname" id="name" required>#}
+{#        </div>#}
+{#      </div>#}
+{#        <div class="row mb-3">#}
+{#        <label for="name" class="col-sm-4 ">Username</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" name="uname" id="username" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="email" class="col-sm-4 ">Email address</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="email" class="form-control" name="mail" id="email" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="phone" class="col-sm-4 ">Phone Number</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="tel" pattern="[0-9]{10}" class="form-control" name="pnumber" id="phone" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="password" class="col-sm-4 ">Password</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="password" class="form-control" name="pass" id="password" minlength="6" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="confirmPassword" class="col-sm-4 ">Confirm Password</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="password" class="form-control" name="conpass" id="confirmPassword" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <div class="offset-sm-4 col-sm-8">#}
+{#          <button type="submit" class="btn btn-primary">Sign up</button>#}
+{#        </div>#}
+{#      </div>#}
+{#    </form>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign up</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .signup-container {
+      max-width: 500px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+    }
+    .signup-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+      color: #333;
+    }
+    .form-label {
+      font-weight: 600;
+      color: #444;
+    }
+    .form-control {
+      border-radius: 8px;
+    }
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      background: #2575fc;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-primary:hover {
+      background: #1d5edb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="signup-container">
+      <h2>Create Your Account</h2>
+      <form action="" method="post">
+        {% csrf_token %}
+
+        <!-- Full Name -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" name="fname" id="name" required>
+        </div>
+
+        <!-- Username -->
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" name="uname" id="username" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" name="mail" id="email" required>
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="tel" pattern="[0-9]{10}" class="form-control" name="pnumber" id="phone" placeholder="10-digit number" required>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" name="pass" id="password" minlength="6" required>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" name="conpass" id="confirmPassword" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Sign up</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

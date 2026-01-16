@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Secure Signup | Phishing Detection Portal</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --danger-color: #dc2626;
+      --success-color: #16a34a;
+      --warning-color: #f59e0b;
+      --dark-color: #1f2937;
+      --light-color: #f8fafc;
+      --gray-color: #6b7280;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      min-height: 90vh;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .left-panel {
+      flex: 1;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .left-panel::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+    }
+
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .security-badge i {
+      margin-right: 8px;
+      color: #4ade80;
+    }
+
+    .left-panel h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .left-panel p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 500px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-top: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .features-list i {
+      background: rgba(255, 255, 255, 0.2);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    .right-panel {
+      flex: 1.2;
+      background: var(--card-bg);
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .logo-text h2 {
+      font-size: 1.8rem;
+      color: var(--dark-color);
+      font-weight: 700;
+    }
+
+    .logo-text span {
+      color: var(--primary-color);
+    }
+
+    .form-header {
+      margin-bottom: 40px;
+    }
+
+    .form-header h3 {
+      font-size: 1.8rem;
+      color: var(--dark-color);
+      margin-bottom: 10px;
+    }
+
+    .form-header p {
+      color: var(--gray-color);
+      font-size: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--dark-color);
+      font-size: 0.95rem;
+    }
+
+    .input-container {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 16px 20px 16px 50px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+      background-color: white;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-color);
+      font-size: 1.1rem;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-color);
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .error-message {
+      color: var(--danger-color);
+      font-size: 0.85rem;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .error-message.show {
+      opacity: 1;
+    }
+
+    .error-message i {
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+
+    .strength-meter {
+      margin-top: 8px;
+      height: 6px;
+      border-radius: 3px;
+      background-color: #e5e7eb;
+      overflow: hidden;
+    }
+
+    .strength-bar {
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s, background-color 0.3s;
+      border-radius: 3px;
+    }
+
+    .strength-text {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      color: var(--gray-color);
+    }
+
+    .captcha-container {
+      background-color: #f9fafb;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 25px 0;
+      border: 1px solid #e5e7eb;
+    }
+
+    .captcha-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .captcha-code {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.8rem;
+      letter-spacing: 8px;
+      background: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 15px;
+      border: 1px dashed #d1d5db;
+      user-select: none;
+    }
+
+    .captcha-input-container {
+      display: flex;
+      gap: 10px;
+    }
+
+    .captcha-input {
+      flex: 1;
+      padding: 16px 20px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .refresh-captcha {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .refresh-captcha:hover {
+      background: var(--secondary-color);
+    }
+
+    .terms-checkbox {
+      display: flex;
+      align-items: flex-start;
+      margin: 25px 0 30px;
+    }
+
+    .terms-checkbox input {
+      margin-right: 12px;
+      margin-top: 4px;
+    }
+
+    .terms-label {
+      font-size: 0.9rem;
+      color: var(--gray-color);
+      line-height: 1.5;
+    }
+
+    .terms-label a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .terms-label a:hover {
+      text-decoration: underline;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .login-link {
+      text-align: center;
+      color: var(--gray-color);
+      font-size: 1rem;
+    }
+
+    .login-link a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    .security-tips {
+      margin-top: 40px;
+      padding: 20px;
+      background: #f0f9ff;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .security-tips h4 {
+      color: var(--dark-color);
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .security-tips ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .security-tips li {
+      font-size: 0.9rem;
+      color: var(--gray-color);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .security-tips li i {
+      color: var(--success-color);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .progress-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f8fafc;
+      border-radius: 12px;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 8px;
+      background-color: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--danger-color), var(--warning-color), var(--success-color));
+      transition: width 0.5s;
+      border-radius: 4px;
+    }
+
+    .progress-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark-color);
+      min-width: 70px;
+    }
+
+    .validation-success {
+      color: var(--success-color);
+    }
+
+    .validation-error {
+      color: var(--danger-color);
+    }
+
+    .validation-pending {
+      color: var(--gray-color);
+    }
+
+    @media (max-width: 1024px) {
+      .container {
+        flex-direction: column;
+        max-width: 700px;
+      }
+      
+      .left-panel, .right-panel {
+        padding: 40px 30px;
+      }
+      
+      .left-panel {
+        order: 2;
+      }
+      
+      .right-panel {
+        order: 1;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .left-panel, .right-panel {
+        padding: 30px 20px;
+      }
+      
+      .left-panel h1 {
+        font-size: 2.2rem;
+      }
+      
+      .captcha-input-container {
+        flex-direction: column;
+      }
+      
+      .refresh-captcha {
+        width: 100%;
+        height: 50px;
+      }
+    }
+
+    .shake {
+      animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+
+    .success-check {
+      color: var(--success-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <div>
+        <div class="security-badge">
+          <i class="fas fa-shield-alt"></i>
+          <span>256-bit Encryption • Phishing Protected</span>
+        </div>
+        
+        <h1>Join Our Secure Community</h1>
+        
+        <p>Create your account with confidence. Our advanced phishing detection systems and security protocols ensure your data remains protected at all times.</p>
+        
+        <ul class="features-list">
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Real-time phishing detection</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>End-to-end encryption</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Multi-factor authentication</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Zero-knowledge architecture</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Regular security audits</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div style="margin-top: auto;">
+        <div style="display: flex; align-items: center; gap: 15px; margin-top: 30px;">
+          <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-lock" style="font-size: 1.5rem;"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 5px;">Security First</h3>
+            <p style="font-size: 0.9rem; opacity: 0.8;">Your data is encrypted before it leaves your device</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <div class="logo-section">
+        <div class="logo-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="logo-text">
+          <h2>Phish<span>Shield</span></h2>
+          <p style="font-size: 0.9rem; color: var(--gray-color);">Phishing Detection Portal</p>
+        </div>
+      </div>
+
+      <div class="form-header">
+        <h3>Create Your Account</h3>
+        <p>Fill in your details to get started with our secure platform</p>
+      </div>
+
+      <!-- Progress Indicator -->
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text">
+          <span id="progressText">0% Complete</span>
+        </div>
+      </div>
+
+      <form action="/myapp/signup_post/" method="post" id="signupForm">
+        {% csrf_token %}
+
+        <!-- Full Name -->
+        <div class="form-group">
+          <label class="form-label" for="name">Full Name</label>
+          <div class="input-container">
+            <input type="text" class="form-input" id="name" name="fname" placeholder="Enter your full name">
+            <i class="fas fa-user input-icon"></i>
+          </div>
+          <div class="error-message" id="nameError">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Full name must contain only letters and be 3-50 characters long</span>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <div class="input-container">
+            <input type="email" class="form-input" id="email" name="mail" placeholder="Enter your email address">
+            <i class="fas fa-envelope input-icon"></i>
+          </div>
+          <div class="error-message" id="emailError">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Please enter a valid email address</span>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone Number</label>
+          <div class="input-container">
+            <input type="tel" class="form-input" id="phone" name="pnumber" placeholder="10-digit phone number">
+            <i class="fas fa-phone input-icon"></i>
+          </div>
+          <div class="error-message" id="phoneError">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Phone number must be exactly 10 digits</span>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="input-container">
+            <input type="password" class="form-input" id="password" name="pass" placeholder="Create a strong password">
+            <i class="fas fa-lock input-icon"></i>
+            <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+          </div>
+          <div class="strength-meter">
+            <div class="strength-bar" id="strengthBar"></div>
+          </div>
+          <div class="strength-text" id="strengthText">Password strength: Very weak</div>
+          <div class="error-message" id="passwordError">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Password must be at least 8 characters with letters, numbers, and special characters</span>
+          </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label class="form-label" for="password-confirm">Confirm Password</label>
+          <div class="input-container">
+            <input type="password" class="form-input" id="password-confirm" name="conpass" placeholder="Confirm your password">
+            <i class="fas fa-lock input-icon"></i>
+            <i class="fas fa-eye password-toggle" id="toggleConfirmPassword"></i>
+          </div>
+          <div class="error-message" id="confirmPasswordError">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Passwords do not match</span>
+          </div>
+        </div>
+
+        <!-- CAPTCHA -->
+        <div class="captcha-container">
+          <div class="captcha-header">
+            <div>
+              <i class="fas fa-robot"></i>
+              <span style="font-weight: 600; margin-left: 8px;">Security Verification</span>
+            </div>
+            <button type="button" class="refresh-captcha" id="refreshCaptcha">
+              <i class="fas fa-redo"></i>
+            </button>
+          </div>
+          <div class="captcha-code" id="captchaCode">A3B8C2</div>
+          <div class="captcha-input-container">
+            <input type="text" class="captcha-input" id="captchaInput" placeholder="Enter the code above" maxlength="6">
+          </div>
+          <div class="error-message" id="captchaError">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Please enter the correct CAPTCHA code</span>
+          </div>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="terms-checkbox">
+          <input type="checkbox" id="terms" name="terms">
+          <label class="terms-label" for="terms">
+            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I understand that my data will be protected with industry-standard encryption and used solely for security purposes.
+          </label>
+        </div>
+        <div class="error-message" id="termsError">
+          <i class="fas fa-exclamation-circle"></i>
+          <span>You must agree to the terms and conditions</span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <i class="fas fa-user-plus"></i>
+          <span>Create Secure Account</span>
+        </button>
+
+        <div class="login-link">
+          Already have an account? <a href="/myapp/login_get/">Sign In</a>
+        </div>
+      </form>
+
+      <!-- Security Tips -->
+      <div class="security-tips">
+        <h4><i class="fas fa-lightbulb"></i> Phishing Prevention Tips</h4>
+        <ul>
+          <li><i class="fas fa-check"></i> <span>Always check for HTTPS and the padlock icon in your browser</span></li>
+          <li><i class="fas fa-check"></i> <span>Never reuse passwords across different websites</span></li>
+          <li><i class="fas fa-check"></i> <span>Enable two-factor authentication when available</span></li>
+          <li><i class="fas fa-check"></i> <span>Be cautious of emails requesting personal information</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elements
+      const form = document.getElementById('signupForm');
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const phoneInput = document.getElementById('phone');
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('password-confirm');
+      const captchaInput = document.getElementById('captchaInput');
+      const termsCheckbox = document.getElementById('terms');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      // Error elements
+      const nameError = document.getElementById('nameError');
+      const emailError = document.getElementById('emailError');
+      const phoneError = document.getElementById('phoneError');
+      const passwordError = document.getElementById('passwordError');
+      const confirmPasswordError = document.getElementById('confirmPasswordError');
+      const captchaError = document.getElementById('captchaError');
+      const termsError = document.getElementById('termsError');
+      
+      // Progress elements
+      const progressFill = document.getElementById('progressFill');
+      const progressText = document.getElementById('progressText');
+      
+      // Strength meter elements
+      const strengthBar = document.getElementById('strengthBar');
+      const strengthText = document.getElementById('strengthText');
+      
+      // CAPTCHA
+      let currentCaptcha = generateCaptcha();
+      document.getElementById('captchaCode').textContent = currentCaptcha;
+      
+      // Initialize progress
+      updateProgress();
+      
+      // Toggle password visibility
+      document.getElementById('togglePassword').addEventListener('click', function() {
+        togglePasswordVisibility(passwordInput, this);
+      });
+      
+      document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+        togglePasswordVisibility(confirmPasswordInput, this);
+      });
+      
+      function togglePasswordVisibility(input, toggleIcon) {
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        toggleIcon.classList.toggle('fa-eye');
+        toggleIcon.classList.toggle('fa-eye-slash');
+      }
+      
+      // Generate CAPTCHA
+      function generateCaptcha() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+        let captcha = '';
+        for (let i = 0; i < 6; i++) {
+          captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return captcha;
+      }
+      
+      // Refresh CAPTCHA
+      document.getElementById('refreshCaptcha').addEventListener('click', function() {
+        currentCaptcha = generateCaptcha();
+        document.getElementById('captchaCode').textContent = currentCaptcha;
+        captchaInput.value = '';
+        hideError(captchaError);
+      });
+      
+      // Real-time validation
+      nameInput.addEventListener('input', validateName);
+      emailInput.addEventListener('input', validateEmail);
+      phoneInput.addEventListener('input', validatePhone);
+      passwordInput.addEventListener('input', validatePassword);
+      confirmPasswordInput.addEventListener('input', validateConfirmPassword);
+      captchaInput.addEventListener('input', validateCaptcha);
+      termsCheckbox.addEventListener('change', validateTerms);
+      
+      // Validation functions
+      function validateName() {
+        const name = nameInput.value.trim();
+        const namePattern = /^[a-zA-Z\s]{3,50}$/;
+        
+        if (name === '') {
+          showError(nameError, 'Full name is required');
+          return false;
+        } else if (!namePattern.test(name)) {
+          showError(nameError, 'Full name must contain only letters and be 3-50 characters long');
+          return false;
+        } else {
+          hideError(nameError);
+          return true;
+        }
+      }
+      
+      function validateEmail() {
+        const email = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (email === '') {
+          showError(emailError, 'Email address is required');
+          return false;
+        } else if (!emailPattern.test(email)) {
+          showError(emailError, 'Please enter a valid email address');
+          return false;
+        } else {
+          hideError(emailError);
+          return true;
+        }
+      }
+      
+      function validatePhone() {
+        const phone = phoneInput.value.trim();
+        const phonePattern = /^[0-9]{10}$/;
+        
+        if (phone === '') {
+          showError(phoneError, 'Phone number is required');
+          return false;
+        } else if (!phonePattern.test(phone)) {
+          showError(phoneError, 'Phone number must be exactly 10 digits');
+          return false;
+        } else {
+          hideError(phoneError);
+          return true;
+        }
+      }
+      
+      function validatePassword() {
+        const password = passwordInput.value;
+        
+        if (password === '') {
+          showError(passwordError, 'Password is required');
+          updatePasswordStrength(0);
+          return false;
+        } else if (password.length < 8) {
+          showError(passwordError, 'Password must be at least 8 characters long');
+          updatePasswordStrength(1);
+          return false;
+        } else {
+          // Check password strength
+          let strength = 0;
+          
+          // Length check
+          if (password.length >= 8) strength++;
+          if (password.length >= 12) strength++;
+          
+          // Character variety
+          if (/[A-Z]/.test(password)) strength++;
+          if (/[0-9]/.test(password)) strength++;
+          if (/[^A-Za-z0-9]/.test(password)) strength++;
+          
+          updatePasswordStrength(strength);
+          
+          if (strength >= 4) {
+            hideError(passwordError);
+            return true;
+          } else {
+            showError(passwordError, 'Password must contain uppercase, lowercase, numbers, and special characters');
+            return false;
+          }
+        }
+      }
+      
+      function updatePasswordStrength(strength) {
+        let width = 0;
+        let text = '';
+        let color = '';
+        
+        switch(strength) {
+          case 0:
+          case 1:
+            width = 20;
+            text = 'Very weak';
+            color = '#dc2626';
+            break;
+          case 2:
+            width = 40;
+            text = 'Weak';
+            color = '#f97316';
+            break;
+          case 3:
+            width = 60;
+            text = 'Fair';
+            color = '#f59e0b';
+            break;
+          case 4:
+            width = 80;
+            text = 'Strong';
+            color = '#16a34a';
+            break;
+          case 5:
+            width = 100;
+            text = 'Very strong';
+            color = '#15803d';
+            break;
+        }
+        
+        strengthBar.style.width = `${width}%`;
+        strengthBar.style.backgroundColor = color;
+        strengthText.textContent = `Password strength: ${text}`;
+        strengthText.style.color = color;
+      }
+      
+      function validateConfirmPassword() {
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+        
+        if (confirmPassword === '') {
+          showError(confirmPasswordError, 'Please confirm your password');
+          return false;
+        } else if (password !== confirmPassword) {
+          showError(confirmPasswordError, 'Passwords do not match');
+          return false;
+        } else {
+          hideError(confirmPasswordError);
+          return true;
+        }
+      }
+      
+      function validateCaptcha() {
+        const userInput = captchaInput.value.trim();
+        
+        if (userInput === '') {
+          showError(captchaError, 'CAPTCHA is required');
+          return false;
+        } else if (userInput.toUpperCase() !== currentCaptcha.toUpperCase()) {
+          showError(captchaError, 'Incorrect CAPTCHA code');
+          return false;
+        } else {
+          hideError(captchaError);
+          return true;
+        }
+      }
+      
+      function validateTerms() {
+        if (!termsCheckbox.checked) {
+          showError(termsError, 'You must agree to the terms and conditions');
+          return false;
+        } else {
+          hideError(termsError);
+          return true;
+        }
+      }
+      
+      // Show/hide error functions
+      function showError(errorElement, message) {
+        errorElement.querySelector('span').textContent = message;
+        errorElement.classList.add('show');
+        errorElement.previousElementSibling.classList.add('shake');
+        setTimeout(() => {
+          errorElement.previousElementSibling.classList.remove('shake');
+        }, 500);
+      }
+      
+      function hideError(errorElement) {
+        errorElement.classList.remove('show');
+      }
+      
+      // Update progress bar
+      function updateProgress() {
+        const fields = [
+          nameInput, emailInput, phoneInput, passwordInput, 
+          confirmPasswordInput, captchaInput, termsCheckbox
+        ];
+        
+        let validCount = 0;
+        
+        // Check each field
+        if (validateName()) validCount++;
+        if (validateEmail()) validCount++;
+        if (validatePhone()) validCount++;
+        if (validatePassword()) validCount++;
+        if (validateConfirmPassword()) validCount++;
+        if (validateCaptcha()) validCount++;
+        if (validateTerms()) validCount++;
+        
+        const progress = Math.round((validCount / 7) * 100);
+        progressFill.style.width = `${progress}%`;
+        progressText.textContent = `${progress}% Complete`;
+        
+        // Update progress text color
+        if (progress < 30) {
+          progressText.className = 'progress-text validation-error';
+        } else if (progress < 70) {
+          progressText.className = 'progress-text validation-pending';
+        } else {
+          progressText.className = 'progress-text validation-success';
+        }
+      }
+      
+      // Add input listeners for progress updates
+      const allInputs = [nameInput, emailInput, phoneInput, passwordInput, 
+                        confirmPasswordInput, captchaInput, termsCheckbox];
+      
+      allInputs.forEach(input => {
+        if (input.type === 'checkbox') {
+          input.addEventListener('change', updateProgress);
+        } else {
+          input.addEventListener('input', updateProgress);
+        }
+      });
+      
+     
+      // Initialize validation
+      validateName();
+      validateEmail();
+      validatePhone();
+      validatePassword();
+      validateConfirmPassword();
+      validateCaptcha();
+      validateTerms();
+    });
+  </script>
+</body>
+</html>
